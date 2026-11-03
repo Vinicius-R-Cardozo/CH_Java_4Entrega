@@ -2,7 +2,7 @@
 
 Aplicação web em Spring Boot desenvolvida para a disciplina **Java Advanced** (Sprint 4) do Challenge FIAP 2026, proposto pela **CLYVO VET**, pelo grupo **CelticsTech**.
 
-- **Aplicação online:** _(link do Render)_
+- **Aplicação online:** https://ch-java-4entrega.onrender.com (no plano gratuito, a primeira visita depois de um tempo parado leva cerca de 1 minuto)
 - **Vídeo da apresentação:** _(link do YouTube)_
 
 ## Integrantes
