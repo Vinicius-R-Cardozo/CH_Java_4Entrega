@@ -6,12 +6,11 @@ Aplicação web em Spring Boot desenvolvida para a disciplina **Java Advanced** 
 - **Vídeo da apresentação:** _(link do YouTube)_
 
 ## Integrantes
-
-| Nome | RM | Turma |
-|------|----|-------|
-|      |    |       |
-|      |    |       |
-|      |    |       |
+João Victor Vendrameto | RM563665 | 2TDSPV |
+Nicolas de Oliveira Jacob | RM564205 | 2TDSPX |
+Gabriel Ambrósio Saraiva | RM566552 | 2TDSPV |
+Vinicius Romaguera Cardozo | RM562308 | 2TDSPX |
+Yuri Fuzinatto Garzoli Barreto | RM561450 | 2TDSPX |
 
 ## O problema
 
