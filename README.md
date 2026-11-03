@@ -90,8 +90,8 @@ _(Mobile, .NET, DevOps e IoT: preencher como cada uma foi aplicada na solução.
 ### Passos
 
 ```bash
-git clone <url-do-repositorio>
-cd clyvo-vet-sprint4
+git clone https://github.com/Vinicius-R-Cardozo/CH_Java_4Entrega.git
+cd CH_Java_4Entrega
 ```
 
 Windows:
