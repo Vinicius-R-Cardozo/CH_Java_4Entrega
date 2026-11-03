@@ -1,0 +1,11 @@
+# Blueprint do Render: no painel, "New > Blueprint" e escolha este repositório.
+# O Render passa a porta na variável PORT, que o application.properties já usa.
+services:
+  - type: web
+    name: clyvo-vet
+    runtime: docker
+    plan: free
+    healthCheckPath: /index.html
+    envVars:
+      - key: DB_PATH
+        value: /app/data/clyvovet
