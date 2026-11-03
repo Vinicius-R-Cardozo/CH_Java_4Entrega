@@ -18,11 +18,35 @@
         </div>
     </div>
 
+    <div id="alergias-do-pet"></div>
+
     <form class="formulario" id="formulario">
         <label for="observacao">O que foi realizado</label>
-        <textarea id="observacao" name="observacao" rows="5" maxlength="500"
+        <textarea id="observacao" name="observacao" rows="3" maxlength="100"
                   placeholder="Ex.: vacina V10 aplicada, sem reações."></textarea>
         <p class="erro-campo" data-erro="observacao"></p>
+
+        <label for="orientacao">Orientação para o tutor</label>
+        <textarea id="orientacao" name="orientacao" rows="3" maxlength="200"
+                  placeholder="Ex.: retorno em 6 meses; manter ração renal."></textarea>
+        <p class="erro-campo" data-erro="orientacao"></p>
+
+        <div class="campos-lado-a-lado">
+            <div>
+                <label for="idMedicamento">Medicamento prescrito</label>
+                <select id="idMedicamento" name="idMedicamento"></select>
+                <p class="erro-campo" data-erro="idMedicamento"></p>
+            </div>
+            <div>
+                <label for="idExame">Exame solicitado</label>
+                <select id="idExame" name="idExame"></select>
+                <p class="erro-campo" data-erro="idExame"></p>
+            </div>
+        </div>
+
+        <label for="pagamento">Forma de pagamento</label>
+        <select id="pagamento" name="pagamento" data-opcoes="PIX,CREDITO,DEBITO,SALDO"></select>
+        <p class="erro-campo" data-erro="pagamento"></p>
 
         <div class="acoes-formulario">
             <button type="submit" class="botao">Registrar no histórico</button>

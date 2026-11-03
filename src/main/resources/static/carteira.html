@@ -19,11 +19,39 @@
         </div>
     </div>
 
+    <div id="alerta-alergias"></div>
+
     <h2>Próximos cuidados</h2>
+    <p class="subtitulo">Calculados pela espécie e pela fase de vida do pet, a partir do último registro de cada cuidado.</p>
     <div id="proximos"></div>
 
-    <h2>Histórico de atendimentos</h2>
+    <h2>Cuidados para esta raça</h2>
+    <p class="subtitulo">Predisposições e restrições cadastradas pela clínica para a raça do pet.</p>
+    <div id="cuidados-especie"></div>
+
+    <h2>Consultas na clínica</h2>
+    <div id="atendimentos"></div>
+
+    <h2>Histórico de cuidados preventivos</h2>
     <div id="historico"></div>
+
+    <h2>Alergias</h2>
+    <div id="alergias"></div>
+    <form class="formulario formulario-em-linha" id="formulario-alergia" hidden>
+        <div>
+            <label for="idMedicamento">Medicamento</label>
+            <select id="idMedicamento" name="idMedicamento"></select>
+            <p class="erro-campo" data-erro="idMedicamento"></p>
+        </div>
+        <div>
+            <label for="gravidade">Gravidade</label>
+            <select id="gravidade" name="gravidade" data-opcoes="GRAVE,MEDIA,LEVE"></select>
+            <p class="erro-campo" data-erro="gravidade"></p>
+        </div>
+        <div class="acoes-formulario">
+            <button type="submit" class="botao">Registrar alergia</button>
+        </div>
+    </form>
 </main>
 <script src="js/app.js"></script>
 <script src="js/carteira.js"></script>

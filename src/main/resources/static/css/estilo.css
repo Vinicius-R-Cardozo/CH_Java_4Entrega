@@ -333,3 +333,226 @@ tbody tr:last-child td {
         padding-right: 1rem;
     }
 }
+
+/* ---- Sprint 4 ---- */
+
+.topo nav a.ativo {
+    opacity: 1;
+    font-weight: 700;
+    box-shadow: inset 0 -2px 0 #fff;
+}
+
+.texto-apoio {
+    margin: .75rem 0 0;
+    font-size: .9rem;
+    color: var(--cor-texto-suave);
+}
+
+.dica-campo {
+    margin: 0;
+    font-size: .82rem;
+    color: var(--cor-texto-suave);
+}
+
+.demonstracao {
+    margin-top: 1rem;
+    padding: .75rem 1rem;
+    background: var(--cor-superficie);
+    border: 1px dashed var(--cor-borda);
+    border-radius: var(--raio);
+    font-size: .9rem;
+}
+
+.demonstracao summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--cor-primaria);
+}
+
+.demonstracao ul {
+    margin: .5rem 0 0;
+    padding-left: 1.1rem;
+}
+
+.cartao-cadastro {
+    max-width: 560px;
+    padding: 2rem 0;
+}
+
+.formulario fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+    margin: 0 0 .75rem;
+    padding: 0;
+    border: 0;
+}
+
+.formulario legend {
+    margin-bottom: .25rem;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--cor-primaria);
+}
+
+.campos-lado-a-lado {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0 1rem;
+}
+
+.campos-lado-a-lado > div {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+}
+
+.formulario-em-linha {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 1rem;
+    max-width: none;
+    margin-bottom: 1.25rem;
+}
+
+.formulario-em-linha > div {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+    min-width: 180px;
+}
+
+.formulario-em-linha .acoes-formulario {
+    margin-top: 0;
+}
+
+.botao:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+
+.campo-busca {
+    width: 100%;
+    max-width: 360px;
+    margin-bottom: 1rem;
+    padding: .55rem .7rem;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    font: inherit;
+}
+
+.aviso-alerta {
+    background: var(--cor-alerta-fundo);
+    border: 1px solid #fedf89;
+    color: var(--cor-alerta);
+}
+
+.grade-cartoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.cartao {
+    padding: 1rem 1.1rem;
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-left: 4px solid var(--cor-primaria);
+    border-radius: var(--raio);
+}
+
+.cartao-restricao {
+    border-left-color: var(--cor-alerta);
+}
+
+.cartao h3 {
+    margin: .25rem 0 .4rem;
+    font-size: 1rem;
+}
+
+.cartao p {
+    margin: 0;
+    color: var(--cor-texto-suave);
+}
+
+.cartao-rotulo {
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+}
+
+.selo-gravidade-grave,
+.selo-delete {
+    background: var(--cor-perigo-fundo);
+    color: var(--cor-perigo);
+}
+
+.selo-gravidade-media,
+.selo-update {
+    background: var(--cor-alerta-fundo);
+    color: var(--cor-alerta);
+}
+
+.selo-gravidade-leve,
+.selo-insert {
+    background: var(--cor-sucesso-fundo);
+    color: var(--cor-sucesso);
+}
+
+td small {
+    color: var(--cor-texto-suave);
+}
+
+.texto-tecnico {
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: .8rem;
+    word-break: break-word;
+}
+
+.saida-console {
+    overflow-x: auto;
+    padding: 1rem 1.25rem;
+    background: #10201e;
+    color: #d7f5ef;
+    border-radius: var(--raio);
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: .82rem;
+    line-height: 1.45;
+}
+
+.abas {
+    display: flex;
+    gap: .25rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.aba {
+    padding: .6rem 1rem;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    color: var(--cor-texto-suave);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.aba.ativa {
+    border-bottom-color: var(--cor-primaria);
+    color: var(--cor-primaria);
+}
+
+.paginacao {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    color: var(--cor-texto-suave);
+}

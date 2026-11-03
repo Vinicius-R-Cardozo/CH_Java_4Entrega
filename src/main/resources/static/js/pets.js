@@ -7,11 +7,12 @@
 
     function exibir(pets) {
         renderizarTabela(lista, pets, 'Você ainda não cadastrou nenhum pet.',
-            ['Nome', 'Espécie', 'Raça', 'Fase de vida', ''], pet => `
+            ['Nome', 'Espécie', 'Raça', 'Idade', 'Fase de vida', ''], pet => `
             <tr>
                 <td><a href="carteira.html?pet=${pet.id}">${escapar(pet.nome)}</a></td>
                 <td>${ROTULOS[pet.especie]}</td>
-                <td>${escapar(pet.raca)}</td>
+                <td>${escapar(pet.raca.nome)}</td>
+                <td>${rotuloDaIdade(pet.idade)}</td>
                 <td>${ROTULOS[pet.faseVida]}</td>
                 <td class="acoes">
                     <a class="botao" href="carteira.html?pet=${pet.id}">Carteira</a>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Campanhas preventivas · Clyvo Vet</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<header class="topo"></header>
+<main class="conteudo">
+    <div id="avisos"></div>
+
+    <div class="titulo-pagina">
+        <div>
+            <h1>Campanhas preventivas</h1>
+            <p class="subtitulo">Encontre os pets que precisam de um lembrete, por faixa etária e estado, e fale com os tutores
+                antes que o cuidado atrase. A segmentação é feita pela função FN_CT_MARKETING_PETS do banco.</p>
+        </div>
+    </div>
+
+    <form class="formulario formulario-em-linha" id="filtros">
+        <div>
+            <label for="faixa">Faixa etária</label>
+            <select id="faixa" name="faixa">
+                <option value="">Todas</option>
+                <option value="JOVEM">Jovem (1 a 2 anos)</option>
+                <option value="ADULTO">Adulto (3 a 8 anos)</option>
+                <option value="IDOSO">Idoso (9 anos ou mais)</option>
+            </select>
+        </div>
+        <div>
+            <label for="uf">Estado</label>
+            <select id="uf" name="uf"></select>
+        </div>
+        <div class="acoes-formulario">
+            <button type="submit" class="botao">Buscar público</button>
+            <button type="button" class="botao botao-secundario" id="exportar">Exportar JSON</button>
+        </div>
+    </form>
+
+    <p class="subtitulo" id="resumo"></p>
+    <div id="lista"></div>
+</main>
+<script src="js/app.js"></script>
+<script src="js/campanhas.js"></script>
+</body>
+</html>

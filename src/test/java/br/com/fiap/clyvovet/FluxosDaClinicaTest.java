@@ -138,12 +138,15 @@ class FluxosDaClinicaTest {
     @Test
     void campanhaERelatoriosUsamOsPackagesDoGrupo() throws Exception {
         mvc.perform(get("/campanhas").param("faixa", "ADULTO").with(VETERINARIO))
-                .andExpect(status().isOk()).andExpect(jsonPath("$", hasSize(greaterThan(0))));
+                .andExpect(status().isOk()).andExpect(jsonPath("$", hasSize(greaterThan(0))))
+                .andExpect(jsonPath("$[0].nomePet").isString())
+                .andExpect(jsonPath("$[0].nomeTutor").isString());
         mvc.perform(get("/campanhas").param("faixa", "VELHO").with(VETERINARIO))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.mensagem").value("Faixa etaria invalida. Utilize JOVEM, ADULTO ou IDOSO."));
         mvc.perform(get("/relatorios/pets-do-tutor/1").with(VETERINARIO))
-                .andExpect(status().isOk()).andExpect(jsonPath("$", hasSize(3)));
+                .andExpect(status().isOk()).andExpect(jsonPath("$", hasSize(3)))
+                .andExpect(jsonPath("$[0].idPaciente").isNumber());
         mvc.perform(get("/relatorios/resumo-idade-porte").with(VETERINARIO))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[1]").value("========== RELATORIO: SOMA DE IDADES POR FAIXA E PORTE =========="));

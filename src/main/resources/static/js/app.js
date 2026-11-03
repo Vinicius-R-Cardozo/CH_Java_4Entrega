@@ -14,8 +14,34 @@ const ROTULOS = {
     SEM_REGISTRO: 'Sem registro',
     ATRASADO: 'Atrasado',
     PROXIMO: 'Próximo',
-    EM_DIA: 'Em dia'
+    EM_DIA: 'Em dia',
+    AVE: 'Ave',
+    REPTIL: 'Réptil',
+    PEIXE: 'Peixe',
+    ANFIBIO: 'Anfíbio',
+    PRIMATA: 'Primata',
+    PEQUENO: 'Pequeno',
+    MEDIO: 'Médio',
+    GRANDE: 'Grande',
+    SPD: 'Sem porte definido',
+    F: 'Fêmea',
+    M: 'Macho',
+    PIX: 'Pix',
+    CREDITO: 'Crédito',
+    DEBITO: 'Débito',
+    SALDO: 'Saldo',
+    GRAVE: 'Grave',
+    MEDIA: 'Média',
+    LEVE: 'Leve',
+    PREDISPOSICAO: 'Predisposição',
+    RESTRICAO: 'Restrição',
+    JOVEM: 'Jovem (1 a 2 anos)',
+    IDOSO: 'Idoso (9 anos ou mais)',
+    'FILHOTE/JOVEM': 'Filhote/Jovem (até 2 anos)'
 };
+
+const UFS = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE',
+    'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];
 
 const MENU = {
     TUTOR: [
@@ -24,7 +50,10 @@ const MENU = {
     ],
     VETERINARIO: [
         { pagina: 'agenda.html', texto: 'Agenda' },
-        { pagina: 'pacientes.html', texto: 'Pacientes' }
+        { pagina: 'pacientes.html', texto: 'Pacientes' },
+        { pagina: 'campanhas.html', texto: 'Campanhas' },
+        { pagina: 'relatorios.html', texto: 'Relatórios' },
+        { pagina: 'auditoria.html', texto: 'Auditoria' }
     ]
 };
 
@@ -55,13 +84,13 @@ function sair() {
 }
 
 async function chamarApi(metodo, caminho, corpo, credenciais = lerSessao()?.credenciais) {
+    const cabecalhos = { 'Accept': 'application/json', 'Content-Type': 'application/json' };
+    if (credenciais) {
+        cabecalhos.Authorization = `Basic ${credenciais}`;
+    }
     const resposta = await fetch(caminho, {
         method: metodo,
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `Basic ${credenciais}`
-        },
+        headers: cabecalhos,
         body: corpo === undefined ? undefined : JSON.stringify(corpo)
     });
 
@@ -97,6 +126,14 @@ function formatarData(dataIso) {
     return `${dia}/${mes}/${ano}`;
 }
 
+function formatarDataHora(dataHoraIso) {
+    if (!dataHoraIso) {
+        return '—';
+    }
+    const [data, hora] = dataHoraIso.split('T');
+    return `${formatarData(data)} ${hora.slice(0, 5)}`;
+}
+
 function hojeIso() {
     const agora = new Date();
     agora.setMinutes(agora.getMinutes() - agora.getTimezoneOffset());
@@ -128,8 +165,9 @@ function mostrarAvisoPendente() {
 }
 
 function montarMenu(sessao) {
+    const paginaAtual = location.pathname.split('/').pop();
     const links = MENU[sessao.perfil]
-        .map(item => `<a href="${item.pagina}">${item.texto}</a>`)
+        .map(item => `<a href="${item.pagina}"${item.pagina === paginaAtual ? ' class="ativo" aria-current="page"' : ''}>${item.texto}</a>`)
         .join('');
 
     document.querySelector('.topo').innerHTML = `
@@ -176,6 +214,34 @@ function renderizarTabela(elemento, itens, mensagemVazia, colunas, montarLinha) 
         </div>`;
 }
 
+/** Monta as opções de um select a partir de uma lista (ex.: raças, medicamentos). */
+function preencherSelect(select, itens, valor, texto, primeiraOpcao = 'Selecione') {
+    const opcoes = itens
+        .map(item => `<option value="${escapar(String(valor(item)))}">${escapar(texto(item))}</option>`)
+        .join('');
+    select.innerHTML = `<option value="">${primeiraOpcao}</option>${opcoes}`;
+}
+
+/** Desabilita o botão e mostra "Aguarde..." enquanto a ação roda. */
+async function comCarregamento(botao, acao) {
+    const textoOriginal = botao.textContent;
+    botao.disabled = true;
+    botao.textContent = 'Aguarde...';
+    try {
+        return await acao();
+    } finally {
+        botao.disabled = false;
+        botao.textContent = textoOriginal;
+    }
+}
+
+function rotuloDaIdade(idade) {
+    if (idade === 0) {
+        return 'menos de 1 ano';
+    }
+    return idade === 1 ? '1 ano' : `${idade} anos`;
+}
+
 function preencherOpcoes(formulario) {
     formulario.querySelectorAll('select[data-opcoes]').forEach(select => {
         const opcoes = select.dataset.opcoes
@@ -209,7 +275,12 @@ function mostrarErros(formulario, erro) {
         return;
     }
     erro.dados.forEach(({ campo, mensagem }) => {
-        formulario.querySelector(`[data-erro="${campo}"]`).textContent = mensagem;
-        formulario.elements[campo].classList.add('campo-invalido');
+        const destino = formulario.querySelector(`[data-erro="${campo}"]`);
+        if (!destino) {
+            mostrarAviso(mensagem, 'erro');
+            return;
+        }
+        destino.textContent = mensagem;
+        formulario.elements[campo]?.classList.add('campo-invalido');
     });
 }

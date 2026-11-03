@@ -1,17 +1,17 @@
 package br.com.fiap.clyvovet.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 
-/** Um item do JSON devolvido por PKG_CT_RELATORIOS.FN_CT_MARKETING_PETS (os nomes de campo são os do package). */
+/** Um item do JSON de PKG_CT_RELATORIOS.FN_CT_MARKETING_PETS: lê os nomes do package e a API devolve em camelCase. */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record PetDaCampanha(
-        @JsonProperty("id_paciente") Long idPaciente,
-        @JsonProperty("nome_pet") String nomePet,
-        @JsonProperty("idade") Integer idade,
-        @JsonProperty("id_tutor") Long idTutor,
-        @JsonProperty("nome_tutor") String nomeTutor,
-        @JsonProperty("uf") String uf,
-        @JsonProperty("telefone") String telefone,
-        @JsonProperty("email") String email) {
+        @JsonAlias("id_paciente") Long idPaciente,
+        @JsonAlias("nome_pet") String nomePet,
+        @JsonAlias("idade") Integer idade,
+        @JsonAlias("id_tutor") Long idTutor,
+        @JsonAlias("nome_tutor") String nomeTutor,
+        @JsonAlias("uf") String uf,
+        @JsonAlias("telefone") String telefone,
+        @JsonAlias("email") String email) {
 }

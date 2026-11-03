@@ -6,6 +6,7 @@
     }
 
     const formulario = document.querySelector('#formulario');
+    mostrarAvisoPendente();
 
     formulario.addEventListener('submit', async evento => {
         evento.preventDefault();
