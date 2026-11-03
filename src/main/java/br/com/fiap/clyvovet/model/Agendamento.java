@@ -11,37 +11,43 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 import java.time.LocalDate;
 
+/** TB_CT_AGENDAMENTO: a única tabela criada pelo app (V2), com o id vindo da sequence, como no banco do grupo. */
 @Data
 @Entity
-@Table(name = "agendamento")
+@Table(name = "TB_CT_AGENDAMENTO")
 public class Agendamento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_agendamento")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "agendamento")
+    @SequenceGenerator(name = "agendamento", sequenceName = "TB_CT_AGENDAMENTO_ID_SEQ", allocationSize = 1)
     private Long id;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "pet_id")
+    @JoinColumn(name = "id_paciente")
     private Pet pet;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
+    @Column(name = "tipo_cuidado")
     private TipoCuidado tipo;
 
-    @Column(nullable = false)
+    @Column(name = "data_agendada")
     private LocalDate data;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
     private StatusAgendamento status = StatusAgendamento.SOLICITADO;
 
-    @Column(length = 500)
     private String observacao;
+
+    /** Consulta gravada em TB_CT_CONSULTA quando o atendimento é registrado. */
+    @Column(name = "id_consulta")
+    private Long idConsulta;
 
     @JsonProperty
     public boolean aguardaConfirmacao() {
@@ -63,12 +69,17 @@ public class Agendamento {
         status = StatusAgendamento.RECUSADO;
     }
 
-    public void concluir(String observacao) {
+    public void garantirQuePodeSerConcluido() {
         if (!podeSerConcluido()) {
             throw new RegraDeNegocioException(
                     "Só é possível registrar atendimentos confirmados e com data até hoje.");
         }
+    }
+
+    public void concluir(String observacao, Long idConsulta) {
+        garantirQuePodeSerConcluido();
         this.observacao = observacao;
+        this.idConsulta = idConsulta;
         status = StatusAgendamento.REALIZADO;
     }
 

@@ -4,54 +4,56 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-import java.time.LocalDate;
-
+/**
+ * TB_CT_PACIENTE do banco do grupo. O tutor vem da tabela de ligação TB_CT_PET.
+ * O cadastro é feito pelas procedures PRC_INS_PACIENTE e PRC_INS_PET; aqui o JPA só lê, altera e exclui
+ * (e a trigger TRG_CT_AUDITORIA_PACIENTE registra cada operação).
+ */
 @Data
 @Entity
-@Table(name = "pet")
+@Table(name = "TB_CT_PACIENTE")
 public class Pet {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_paciente")
     private Long id;
 
-    @NotBlank(message = "Informe o nome do pet.")
-    @Size(max = 60, message = "O nome deve ter no máximo 60 caracteres.")
-    @Column(nullable = false, length = 60)
+    @Column(name = "nome_paciente")
     private String nome;
 
-    @NotNull(message = "Selecione a espécie.")
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 10)
-    private Especie especie;
-
-    @NotBlank(message = "Informe a raça. Se não tiver raça definida, use SRD.")
-    @Size(max = 60, message = "A raça deve ter no máximo 60 caracteres.")
-    @Column(nullable = false, length = 60)
-    private String raca;
-
-    @NotNull(message = "Informe a data de nascimento.")
-    @PastOrPresent(message = "A data de nascimento não pode estar no futuro.")
-    @Column(name = "data_nascimento", nullable = false)
-    private LocalDate dataNascimento;
-
     @ManyToOne(optional = false)
-    @JoinColumn(name = "tutor_id")
-    private Usuario tutor;
+    @JoinColumn(name = "id_especie")
+    private Raca raca;
+
+    @Column(name = "idade_paciente")
+    private Integer idade;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "sexo_paciente")
+    private Sexo sexo;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "porte_paciente")
+    private Porte porte;
+
+    @ManyToOne
+    @JoinTable(name = "TB_CT_PET",
+            joinColumns = @JoinColumn(name = "id_paciente"),
+            inverseJoinColumns = @JoinColumn(name = "id_tutor"))
+    private Tutor tutor;
+
+    public Especie getEspecie() {
+        return raca.getEspecie();
+    }
 
     public FaseVida getFaseVida() {
-        return FaseVida.de(especie, dataNascimento, LocalDate.now());
+        return FaseVida.de(getEspecie(), idade);
     }
 }

@@ -29,4 +29,9 @@ public enum TipoCuidado {
     public String getDescricao() {
         return descricao;
     }
+
+    /** Cães e gatos seguem os três cuidados; as demais espécies, só o check-up. */
+    public boolean aplicaA(Especie especie) {
+        return this == CHECKUP || especie.temProtocoloDeVacina();
+    }
 }

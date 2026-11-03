@@ -1,19 +1,16 @@
 package br.com.fiap.clyvovet.model;
 
-import java.time.LocalDate;
-import java.time.Period;
-
 public enum FaseVida {
 
     FILHOTE,
     ADULTO,
     SENIOR;
 
-    private static final int IDADE_INICIO_ADULTO = 1;
+    /** O banco guarda a idade em anos inteiros (idade_paciente), então filhote vai até 1 ano. */
+    private static final int IDADE_MAXIMA_FILHOTE = 1;
 
-    public static FaseVida de(Especie especie, LocalDate dataNascimento, LocalDate hoje) {
-        int idade = Period.between(dataNascimento, hoje).getYears();
-        if (idade < IDADE_INICIO_ADULTO) {
+    public static FaseVida de(Especie especie, int idade) {
+        if (idade <= IDADE_MAXIMA_FILHOTE) {
             return FILHOTE;
         }
         return idade >= especie.getIdadeInicioSenior() ? SENIOR : ADULTO;

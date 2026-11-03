@@ -9,6 +9,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Usuário logado. Além do id de TB_CT_USUARIO, guarda o id do perfil (id_tutor ou id_veterinario),
+ * que é o que as outras tabelas do grupo referenciam.
+ */
 public class UsuarioAutenticado implements UserDetails {
 
     private final Long id;
@@ -16,13 +20,15 @@ public class UsuarioAutenticado implements UserDetails {
     private final String email;
     private final String senha;
     private final Perfil perfil;
+    private final Long idDoPerfil;
 
-    public UsuarioAutenticado(Usuario usuario) {
+    public UsuarioAutenticado(Usuario usuario, String email, Perfil perfil, Long idDoPerfil) {
         this.id = usuario.getId();
         this.nome = usuario.getNome();
-        this.email = usuario.getEmail();
+        this.email = email;
         this.senha = usuario.getSenha();
-        this.perfil = usuario.getPerfil();
+        this.perfil = perfil;
+        this.idDoPerfil = idDoPerfil;
     }
 
     public Long getId() {
@@ -35,6 +41,16 @@ public class UsuarioAutenticado implements UserDetails {
 
     public Perfil getPerfil() {
         return perfil;
+    }
+
+    /** id em TB_CT_TUTOR; só existe para o perfil TUTOR. */
+    public Long getIdTutor() {
+        return perfil == Perfil.TUTOR ? idDoPerfil : null;
+    }
+
+    /** id em TB_CT_VETERINARIO; só existe para o perfil VETERINARIO. */
+    public Long getIdVeterinario() {
+        return perfil == Perfil.VETERINARIO ? idDoPerfil : null;
     }
 
     @Override

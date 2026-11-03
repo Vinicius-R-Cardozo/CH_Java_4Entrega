@@ -8,6 +8,7 @@ import br.com.fiap.clyvovet.model.SituacaoCuidado;
 import br.com.fiap.clyvovet.model.StatusAgendamento;
 import br.com.fiap.clyvovet.model.TipoCuidado;
 import br.com.fiap.clyvovet.repository.AgendamentoRepository;
+import br.com.fiap.clyvovet.repository.ProntuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,11 +19,17 @@ import java.util.List;
 public class CarteiraService {
 
     private final AgendamentoRepository agendamentoRepository;
+    private final ProntuarioRepository prontuarioRepository;
 
-    public CarteiraService(AgendamentoRepository agendamentoRepository) {
+    public CarteiraService(AgendamentoRepository agendamentoRepository, ProntuarioRepository prontuarioRepository) {
         this.agendamentoRepository = agendamentoRepository;
+        this.prontuarioRepository = prontuarioRepository;
     }
 
+    /**
+     * Junta o que o app calcula (próximos cuidados por espécie e fase de vida) com o que está no banco
+     * do grupo: consultas, cuidados recomendados para a espécie (TB_CT_CUIDADO) e alergias.
+     */
     public CarteiraPet montar(Pet pet) {
         List<Agendamento> historico = agendamentoRepository
                 .findByPetIdAndStatusOrderByDataDesc(pet.getId(), StatusAgendamento.REALIZADO);
@@ -30,10 +37,14 @@ public class CarteiraService {
                 .findByPetIdAndStatusIn(pet.getId(), StatusAgendamento.EM_ABERTO);
 
         List<ProximoCuidado> proximosCuidados = Arrays.stream(TipoCuidado.values())
+                .filter(tipo -> tipo.aplicaA(pet.getEspecie()))
                 .map(tipo -> calcularProximoCuidado(pet, tipo, historico, emAberto))
                 .toList();
 
-        return new CarteiraPet(pet, proximosCuidados, historico);
+        return new CarteiraPet(pet, proximosCuidados, historico,
+                prontuarioRepository.listarAtendimentos(pet.getId()),
+                prontuarioRepository.listarCuidadosDaEspecie(pet.getRaca().getId()),
+                prontuarioRepository.listarAlergias(pet.getId()));
     }
 
     private ProximoCuidado calcularProximoCuidado(Pet pet, TipoCuidado tipo,

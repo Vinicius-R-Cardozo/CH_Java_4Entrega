@@ -1,14 +1,13 @@
 package br.com.fiap.clyvovet.controller;
 
 import br.com.fiap.clyvovet.model.Agendamento;
+import br.com.fiap.clyvovet.model.DadosDoAtendimento;
 import br.com.fiap.clyvovet.model.TipoCuidado;
 import br.com.fiap.clyvovet.security.UsuarioAutenticado;
 import br.com.fiap.clyvovet.service.AgendamentoService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -37,21 +36,16 @@ public class AgendamentoController {
             @FutureOrPresent(message = "A data desejada não pode estar no passado.")
             LocalDate data) {}
 
-    record ConclusaoRequest(
-            @NotBlank(message = "Descreva o que foi realizado no atendimento.")
-            @Size(max = 500, message = "A observação deve ter no máximo 500 caracteres.")
-            String observacao) {}
-
     @GetMapping
     List<Agendamento> listarDoTutor(@AuthenticationPrincipal UsuarioAutenticado usuario) {
-        return agendamentoService.listarDoTutor(usuario.getId());
+        return agendamentoService.listarDoTutor(usuario.getIdTutor());
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     Agendamento solicitar(@AuthenticationPrincipal UsuarioAutenticado usuario,
                           @RequestBody @Valid SolicitacaoRequest solicitacao) {
-        return agendamentoService.solicitar(usuario.getId(), solicitacao.petId(), solicitacao.tipo(), solicitacao.data());
+        return agendamentoService.solicitar(usuario.getIdTutor(), solicitacao.petId(), solicitacao.tipo(), solicitacao.data());
     }
 
     @GetMapping("abertos")
@@ -75,7 +69,8 @@ public class AgendamentoController {
     }
 
     @PatchMapping("{id}/concluir")
-    Agendamento concluir(@PathVariable Long id, @RequestBody @Valid ConclusaoRequest conclusao) {
-        return agendamentoService.concluir(id, conclusao.observacao());
+    Agendamento concluir(@AuthenticationPrincipal UsuarioAutenticado usuario, @PathVariable Long id,
+                         @RequestBody @Valid DadosDoAtendimento atendimento) {
+        return agendamentoService.concluir(id, usuario.getIdVeterinario(), atendimento);
     }
 }

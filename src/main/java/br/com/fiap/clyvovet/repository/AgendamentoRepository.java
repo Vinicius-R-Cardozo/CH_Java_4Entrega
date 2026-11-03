@@ -19,4 +19,6 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> 
     List<Agendamento> findByPetIdAndStatusIn(Long petId, Collection<StatusAgendamento> status);
 
     boolean existsByPetIdAndTipoAndStatusIn(Long petId, TipoCuidado tipo, Collection<StatusAgendamento> status);
+
+    void deleteByPetId(Long petId);
 }
