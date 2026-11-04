@@ -11,10 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-/**
- * Campanha preventiva: a segmentação é feita pela função FN_CT_MARKETING_PETS do banco do grupo
- * (faixa etária JOVEM/ADULTO/IDOSO e UF). O mesmo JSON é o que o grupo importa no MongoDB.
- */
 @Service
 public class CampanhaService {
 

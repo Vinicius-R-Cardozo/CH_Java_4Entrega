@@ -2,7 +2,6 @@ package br.com.fiap.clyvovet.model;
 
 import java.util.Arrays;
 
-/** Grupo da espécie, guardado na coluna TB_CT_ESPECIE.genero do banco do grupo. */
 public enum Especie {
 
     CAO("Canis", 7),
@@ -29,7 +28,6 @@ public enum Especie {
         return idadeInicioSenior;
     }
 
-    /** Vacinação e vermífugo têm protocolo na clínica só para cães e gatos; os demais seguem com check-up. */
     public boolean temProtocoloDeVacina() {
         return this == CAO || this == GATO;
     }

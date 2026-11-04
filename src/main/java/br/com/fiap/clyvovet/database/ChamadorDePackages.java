@@ -10,14 +10,6 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
 
-/**
- * Executa as chamadas aos packages do grupo dentro da transação do Spring (o JdbcTemplate usa a mesma
- * conexão do @Transactional do service, por isso o COMMIT/ROLLBACK é de quem chamou, como no Oracle).
- *
- * As PRC_INS_* do grupo não relançam erro: gravam em TB_CT_LOG_ERRO e terminam normalmente.
- * Por isso, depois de cada chamada, conferimos se apareceu um log novo daquela procedure; se apareceu,
- * a mensagem vira uma exceção para a tela e o @Transactional desfaz o que já tinha sido gravado.
- */
 @Component
 public class ChamadorDePackages {
 

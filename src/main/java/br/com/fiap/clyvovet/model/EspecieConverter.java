@@ -3,7 +3,6 @@ package br.com.fiap.clyvovet.model;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
-/** Converte o texto de TB_CT_ESPECIE.genero ("Canis", "Felis"...) para o enum Especie e vice-versa. */
 @Converter
 public class EspecieConverter implements AttributeConverter<Especie, String> {
 

@@ -6,10 +6,6 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Optional;
 
-/**
- * Exceções que os packages do grupo tratam com PRAGMA EXCEPTION_INIT, com o código Oracle original
- * e o código equivalente que o H2 devolve na SQLException.
- */
 public enum ErroOracle {
 
     VALOR_NULO(-1400, ErrorCode.NULL_NOT_ALLOWED),

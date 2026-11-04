@@ -3,7 +3,6 @@ package br.com.fiap.clyvovet.database.packages;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-/** Porte do PKG_CT_JSON (docs/database/PACKAGES_CELTICSTECH.sql). */
 public final class PkgCtJson {
 
     private static final String NOME_FUNCAO = "PKG_CT_JSON.FN_CT_RELACIONAL_JSON";
@@ -13,11 +12,6 @@ public final class PkgCtJson {
     private PkgCtJson() {
     }
 
-    /**
-     * FN_CT_RELACIONAL_JSON(p_campo1_nome, p_campo1_valor, ..., p_campo10_nome, p_campo10_valor).
-     * Os 3 primeiros pares são obrigatórios; do 4º ao 10º o PL/SQL usa DEFAULT NULL, aqui são opcionais
-     * (varargs). Todos os valores viram texto entre aspas, como no original.
-     */
     public static String fnCtRelacionalJson(Connection conexao, String... nomesEValores) throws SQLException {
         String[] campos = new String[MAXIMO_DE_CAMPOS * 2];
         System.arraycopy(nomesEValores, 0, campos, 0, Math.min(nomesEValores.length, campos.length));

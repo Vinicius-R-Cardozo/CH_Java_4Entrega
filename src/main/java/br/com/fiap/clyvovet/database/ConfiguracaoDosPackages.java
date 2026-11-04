@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
-/** Entrega o DataSource ao porte do PRC_REGISTRAR_LOG, para o log ser gravado numa transação autônoma. */
 @Configuration
 public class ConfiguracaoDosPackages {
 

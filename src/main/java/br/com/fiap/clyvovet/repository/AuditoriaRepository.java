@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/** Leitura paginada das tabelas preenchidas pela trigger (TB_CT_AUDITORIA_DML) e pelos packages (TB_CT_LOG_ERRO). */
 @Repository
 public class AuditoriaRepository {
 

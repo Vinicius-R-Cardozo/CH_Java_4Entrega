@@ -9,10 +9,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-/**
- * TB_CT_ESPECIE do banco do grupo. Cada linha é uma raça (nome_especie, ex.: "Golden Retriever"),
- * com o grupo da espécie em genero ("Canis", "Felis"...) e o porte típico.
- */
 @Data
 @Entity
 @Table(name = "TB_CT_ESPECIE")

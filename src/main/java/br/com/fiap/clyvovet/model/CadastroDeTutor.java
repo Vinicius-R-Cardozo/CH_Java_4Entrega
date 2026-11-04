@@ -8,10 +8,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-/**
- * Cadastro público de tutor. Os limites seguem as colunas de TB_CT_USUARIO, TB_CT_CONTATO e TB_CT_ENDERECO,
- * para o erro aparecer no formulário em vez de virar um log de "estouro de tamanho" na procedure.
- */
 public record CadastroDeTutor(
         @NotBlank(message = "Informe seu nome.")
         @Size(max = 50, message = "O nome deve ter no máximo 50 caracteres.")

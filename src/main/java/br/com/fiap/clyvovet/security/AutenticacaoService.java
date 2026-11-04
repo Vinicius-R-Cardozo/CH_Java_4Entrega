@@ -24,7 +24,6 @@ public class AutenticacaoService implements UserDetailsService {
         this.tutorRepository = tutorRepository;
     }
 
-    /** O perfil não é uma coluna: quem está em TB_CT_VETERINARIO é veterinário, quem está em TB_CT_TUTOR é tutor. */
     @Override
     public UserDetails loadUserByUsername(String email) {
         Usuario usuario = usuarioRepository.findByEmail(email)

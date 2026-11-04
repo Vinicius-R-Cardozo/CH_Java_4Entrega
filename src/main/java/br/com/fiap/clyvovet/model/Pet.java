@@ -11,11 +11,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-/**
- * TB_CT_PACIENTE do banco do grupo. O tutor vem da tabela de ligação TB_CT_PET.
- * O cadastro é feito pelas procedures PRC_INS_PACIENTE e PRC_INS_PET; aqui o JPA só lê, altera e exclui
- * (e a trigger TRG_CT_AUDITORIA_PACIENTE registra cada operação).
- */
 @Data
 @Entity
 @Table(name = "TB_CT_PACIENTE")

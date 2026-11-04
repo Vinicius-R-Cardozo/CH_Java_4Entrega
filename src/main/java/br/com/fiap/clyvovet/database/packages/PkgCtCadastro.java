@@ -11,12 +11,6 @@ import static br.com.fiap.clyvovet.database.packages.ErroOracle.REGRA_CHECK;
 import static br.com.fiap.clyvovet.database.packages.ErroOracle.TAMANHO_EXCEDIDO;
 import static br.com.fiap.clyvovet.database.packages.ErroOracle.VALOR_NULO;
 
-/**
- * Porte do PKG_CT_CADASTRO (docs/database/PACKAGES_CELTICSTECH.sql), procedure por procedure:
- * mesmo nome, mesmos parâmetros na mesma ordem, mesmo INSERT e mesmas mensagens de erro.
- * Cada método é registrado no H2 com CREATE ALIAS PKG_CT_CADASTRO.PRC_... (V6__packages.sql).
- * O primeiro parâmetro (Connection) é injetado pelo H2 e não aparece na chamada SQL.
- */
 public final class PkgCtCadastro {
 
     private PkgCtCadastro() {

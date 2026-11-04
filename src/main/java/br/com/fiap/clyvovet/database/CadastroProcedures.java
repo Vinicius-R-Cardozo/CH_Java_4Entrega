@@ -4,11 +4,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
-/**
- * Chamadas ao PKG_CT_CADASTRO do banco do grupo, com o nome e a ordem de parâmetros do package.
- * Os métodos precisam rodar dentro de um @Transactional do service: as procedures não dão COMMIT
- * e o CURRVAL das sequences só vale na mesma sessão.
- */
+
 @Component
 public class CadastroProcedures {
 

@@ -10,10 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * Consultas do histórico clínico. Ficam em SQL porque juntam várias tabelas do grupo, e algumas
- * delas (TB_CT_PRESCRICAO, TB_CT_CUIDADO, TB_CT_ALERGIA) não têm chave primária para virar entidade.
- */
 @Repository
 public class ProntuarioRepository {
 

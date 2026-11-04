@@ -24,7 +24,6 @@ public class TratadorDeErros {
                 .toList();
     }
 
-    /** Corpo que não dá para ler, por exemplo um valor fora das opções de um enum. */
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     Erro corpoInvalido(HttpMessageNotReadableException excecao) {

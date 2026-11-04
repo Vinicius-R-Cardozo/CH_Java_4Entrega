@@ -21,10 +21,6 @@ import static br.com.fiap.clyvovet.model.Perfil.VETERINARIO;
 @Configuration
 public class SecurityConfig {
 
-    /**
-     * Console do H2, usado para mostrar os SELECTs no vídeo. Só o veterinário entra; aqui o HTTP Basic
-     * mantém o padrão (o navegador abre a janela de login) e o console precisa de frames da mesma origem.
-     */
     @Bean
     @Order(1)
     SecurityFilterChain consoleH2(HttpSecurity http) throws Exception {

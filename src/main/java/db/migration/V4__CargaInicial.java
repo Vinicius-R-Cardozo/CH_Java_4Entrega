@@ -12,12 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Porte dos blocos PL/SQL de docs/database/INSERCAO INICIAL DE DADOS.SQL (os INSERTs fixos estão na V3).
- * Mesmas listas de valores e mesmas regras; o DBMS_RANDOM foi trocado por um Random com semente fixa,
- * para a carga sair sempre igual (o banco é recriado a cada deploy no Render).
- * Única mudança de dado: a senha aleatória de cada usuário é gravada com hash BCrypt.
- */
 public class V4__CargaInicial extends BaseJavaMigration {
 
     private static final long SEMENTE = 2026L;
@@ -27,7 +21,6 @@ public class V4__CargaInicial extends BaseJavaMigration {
     private static final int PRIMEIRO_CRMV = 1001;
     private static final int CONSULTAS_DA_CARGA = 30;
     private static final int PORCENTAGEM_SEM_MEDICAMENTO = 20;
-    /** Na V3, o primeiro medicamento e o primeiro exame são "Nenhum ... Prescrito/Solicitado". */
     private static final int ID_NENHUM = 1;
 
     private static final String[] NOMES_M = {"Gabriel", "Lucas", "Marcos", "Rafael", "Rodrigo", "Bruno", "Thiago",

@@ -9,10 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * Usuário logado. Além do id de TB_CT_USUARIO, guarda o id do perfil (id_tutor ou id_veterinario),
- * que é o que as outras tabelas do grupo referenciam.
- */
 public class UsuarioAutenticado implements UserDetails {
 
     private final Long id;

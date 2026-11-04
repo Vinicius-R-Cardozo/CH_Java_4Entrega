@@ -5,11 +5,6 @@ import org.h2.api.Trigger;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-/**
- * Porte da TRG_CT_AUDITORIA_PACIENTE (AFTER INSERT OR UPDATE OR DELETE ON TB_CT_PACIENTE FOR EACH ROW).
- * O H2 entrega a linha antiga (:OLD) e a nova (:NEW) como arrays, na ordem das colunas da tabela:
- * id_paciente, id_especie, idade_paciente, nome_paciente, sexo_paciente, porte_paciente.
- */
 public class TrgCtAuditoriaPaciente implements Trigger {
 
     private static final int ID_PACIENTE = 0;
@@ -32,7 +27,6 @@ public class TrgCtAuditoriaPaciente implements Trigger {
         PkgCtAuditoria.prcAuditarPaciente(conexao, tipo, descrever(linhaAntiga), descrever(linhaNova));
     }
 
-    /** Monta o mesmo texto do original: 'ID_PACIENTE=...; ID_ESPECIE=...; ...' */
     private static String descrever(Object[] linha) {
         if (linha == null) {
             return null;

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/** Listas de apoio para os formulários (raças, medicamentos, exames e tutores). */
 @RestController
 public class CatalogoController {
 

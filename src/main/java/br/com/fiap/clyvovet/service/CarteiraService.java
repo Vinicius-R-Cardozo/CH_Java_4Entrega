@@ -26,10 +26,6 @@ public class CarteiraService {
         this.prontuarioRepository = prontuarioRepository;
     }
 
-    /**
-     * Junta o que o app calcula (próximos cuidados por espécie e fase de vida) com o que está no banco
-     * do grupo: consultas, cuidados recomendados para a espécie (TB_CT_CUIDADO) e alergias.
-     */
     public CarteiraPet montar(Pet pet) {
         List<Agendamento> historico = agendamentoRepository
                 .findByPetIdAndStatusOrderByDataDesc(pet.getId(), StatusAgendamento.REALIZADO);

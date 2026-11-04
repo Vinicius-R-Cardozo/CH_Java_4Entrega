@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-/** Cadastro e edição de pet. Os limites seguem as colunas de TB_CT_PACIENTE. */
 public record DadosDoPet(
         @NotBlank(message = "Informe o nome do pet.")
         @Size(max = 50, message = "O nome deve ter no máximo 50 caracteres.")

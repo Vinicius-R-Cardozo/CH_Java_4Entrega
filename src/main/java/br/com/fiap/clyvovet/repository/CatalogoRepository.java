@@ -7,14 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-/** Medicamentos e exames do banco do grupo (carga fixa da V3). */
 @Repository
 public class CatalogoRepository {
 
-    /**
-     * Na carga do grupo, o medicamento 1 é "Nenhum Medicamento Prescrito" e o exame 1 é "Nenhum Exame Solicitado".
-     * São usados quando o atendimento não prescreve nada, porque TB_CT_PRESCRICAO exige os dois.
-     */
     public static final long NENHUM_MEDICAMENTO = 1L;
     public static final long NENHUM_EXAME = 1L;
 

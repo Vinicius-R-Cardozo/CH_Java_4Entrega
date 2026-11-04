@@ -17,7 +17,6 @@ import lombok.Data;
 
 import java.time.LocalDate;
 
-/** TB_CT_AGENDAMENTO: a única tabela criada pelo app (V2), com o id vindo da sequence, como no banco do grupo. */
 @Data
 @Entity
 @Table(name = "TB_CT_AGENDAMENTO")

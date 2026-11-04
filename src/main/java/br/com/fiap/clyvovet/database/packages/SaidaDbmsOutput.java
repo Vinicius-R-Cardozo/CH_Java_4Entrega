@@ -9,13 +9,8 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Faz o papel do DBMS_OUTPUT.PUT_LINE, que não existe no H2: as linhas que a procedure imprimiria
- * são juntadas e devolvidas como um ResultSet com a coluna LINHA, na mesma ordem.
- */
 final class SaidaDbmsOutput {
 
-    /** URL que o H2 usa quando chama a função só para descobrir as colunas do ResultSet. */
     private static final String URL_DE_COLUNAS = "jdbc:columnlist:connection";
 
     private final List<String> linhas = new ArrayList<>();

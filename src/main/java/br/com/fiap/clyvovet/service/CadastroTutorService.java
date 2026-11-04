@@ -22,13 +22,6 @@ public class CadastroTutorService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    /**
-     * Cria a conta do tutor pelas procedures do PKG_CT_CADASTRO, na ordem das chaves estrangeiras:
-     * endereço → contato → usuário → dados pessoais (liga os três) → tutor.
-     * Tudo numa transação: um CPF repetido, por exemplo, é recusado pela PRC_INS_USUARIO (log em
-     * TB_CT_LOG_ERRO) e o endereço e o contato já inseridos são desfeitos.
-     * O e-mail é o login do app, então é conferido antes (no banco do grupo ele não é único).
-     */
     @Transactional
     public void cadastrar(CadastroDeTutor dados) {
         String email = dados.email().strip().toLowerCase();
