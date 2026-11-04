@@ -3,7 +3,7 @@
 Aplicação web em Spring Boot desenvolvida para a disciplina **Java Advanced** (Sprint 4) do Challenge FIAP 2026, proposto pela **CLYVO VET**, pelo grupo **CelticsTech**.
 
 - **Aplicação online:** https://ch-java-4entrega.onrender.com (no plano gratuito, a primeira visita depois de um tempo parado leva cerca de 1 minuto)
-- **Vídeo da apresentação:** _(link do YouTube)_
+- **Vídeo da apresentação:** https://youtu.be/73GMwmRhXcY
 
 ## Integrantes
 João Victor Vendrameto | RM563665 | 2TDSPV |
@@ -241,8 +241,7 @@ src/main/resources
 └── static                  páginas HTML, CSS e JavaScript
 
 docs
-├── database                scripts originais do grupo
-└── ROTEIRO_VIDEO.md        roteiro de gravação
+└── database                scripts originais do grupo
 ```
 
 ## Divisão do trabalho
