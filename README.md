@@ -6,11 +6,14 @@ Aplicação web em Spring Boot desenvolvida para a disciplina **Java Advanced** 
 - **Vídeo da apresentação:** https://youtu.be/73GMwmRhXcY
 
 ## Integrantes
-João Victor Vendrameto | RM563665 | 2TDSPV |
-Nicolas de Oliveira Jacob | RM564205 | 2TDSPX |
-Gabriel Ambrósio Saraiva | RM566552 | 2TDSPV |
-Vinicius Romaguera Cardozo | RM562308 | 2TDSPX |
-Yuri Fuzinatto Garzoli Barreto | RM561450 | 2TDSPX |
+
+| Nome | RM | Turma |
+|------|----|-------|
+| João Victor Vendrameto | RM563665 | 2TDSPV |
+| Nicolas de Oliveira Jacob | RM564205 | 2TDSPX |
+| Gabriel Ambrósio Saraiva | RM566552 | 2TDSPV |
+| Vinicius Romaguera Cardozo | RM562308 | 2TDSPX |
+| Yuri Fuzinatto Garzoli Barreto | RM561450 | 2TDSPX |
 
 ## O problema
 
@@ -78,7 +81,15 @@ Diferenças em relação aos scripts do grupo, todas por limitação do H2 ou do
 
 ### Outras disciplinas
 
-_(Mobile, .NET, DevOps e IoT: preencher como cada uma foi aplicada na solução.)_
+Cada disciplina atacou uma parte do desafio da CLYVO VET. Mobile e IoT têm back-end próprio; a ligação com este projeto é o problema de negócio e, no caso de Database, o próprio banco.
+
+| Disciplina | Como foi aplicada |
+|------------|-------------------|
+| **Mastering Relational and Non-Relational Database** | Modelagem do banco Oracle (tabelas `TB_CT_*`), carga de dados, packages, funções, procedures e trigger de auditoria. É o banco usado por esta aplicação (detalhes acima). O JSON da função `FN_CT_MARKETING_PETS`, exportado pela tela de campanhas, é o dataset importado no MongoDB. |
+| **Advanced Business Development with .NET** | API GuardianPet em ASP.NET Core 8, com Entity Framework Core, autenticação JWT e o banco Oracle, cobrindo tutores, pets, veterinários e consultas. |
+| **DevOps Tools & Cloud Computing** | Esteira de CI/CD no Azure DevOps para a API .NET: build, testes automatizados e publicação do artefato na CI, e deploy automático no Azure App Service na CD, com o banco Oracle em nuvem. |
+| **Mobile Application Development** | Aplicativo em React Native com Expo para o tutor acompanhar o pet pelo celular. |
+| **Disruptive Architectures: IoT, IoB & Generative IA** | Solução de visão computacional com API própria. |
 
 ## Como executar
 
@@ -248,6 +259,8 @@ docs
 
 | Integrante | O que fez |
 |------------|-----------|
-|            |           |
-|            |           |
-|            |           |
+| Vinicius Romaguera Cardozo | Java Advanced: aplicação Spring Boot (API, segurança, Flyway, integração com o banco do grupo, telas, testes e deploy no Render) |
+| Gabriel Ambrósio Saraiva | Mastering Database (modelagem Oracle, carga, packages, trigger e MongoDB) e Disruptive Architectures (IoT) |
+| Yuri Fuzinatto Garzoli Barreto | Advanced Business Development with .NET: API GuardianPet |
+| João Victor Vendrameto | DevOps Tools & Cloud Computing: esteira de CI/CD no Azure DevOps e deploy no Azure |
+| Nicolas de Oliveira Jacob | Mobile Application Development: aplicativo em React Native com Expo |
